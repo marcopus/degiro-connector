@@ -1,4 +1,5 @@
 # IMPORTATIONS
+import sys
 import datetime
 import json
 import logging
@@ -13,7 +14,10 @@ from degiro_connector.trading.models.trading_pb2 import Credentials, ProductsInf
 logging.basicConfig(level=logging.WARNING)
 
 # SETUP CONFIG DICT
-with open("config/amaliasophia.json") as config_file:
+if len(sys.argv) < 2:
+    raise Exception("Provide an account name.")
+account_name = sys.argv[1]
+with open(f"config/{account_name}.json") as config_file:
     config_dict = json.load(config_file)
 
 # SETUP CREDENTIALS
