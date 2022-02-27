@@ -7,11 +7,13 @@
 /logs
 /notes
 /payloads
+/package
 
 # ROOT FILES
 /*.egg-info
 /*.py
 !/setup.py
+/*.zip
 
 # FOLDERS
 __pycache__
