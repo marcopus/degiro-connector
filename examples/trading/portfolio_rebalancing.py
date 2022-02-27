@@ -10,6 +10,8 @@ from IPython.display import display
 from degiro_connector.trading.api import API as TradingAPI
 from degiro_connector.trading.models.trading_pb2 import Credentials, ProductsInfo, TransactionsHistory, Update
 
+pd.options.display.float_format = '{:.2f}'.format
+
 # SETUP LOGGING LEVEL
 logging.basicConfig(level=logging.WARNING)
 
