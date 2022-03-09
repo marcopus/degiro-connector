@@ -5,6 +5,7 @@ import json
 import logging
 import degiro_connector.core.helpers.pb_handler as pb_handler
 import pandas as pd
+import dateparser as dp
 
 from IPython.display import display
 from degiro_connector.trading.api import API as TradingAPI
@@ -26,6 +27,8 @@ with open(f"config/{account_name}.json") as config_file:
 int_account = config_dict.get("int_account")
 username = config_dict.get("username")
 password = config_dict.get("password")
+reference_date_from = dp.parse(config_dict.get("reference_date_from"), settings={'DATE_ORDER': 'YMD'})
+reference_date_to = dp.parse(config_dict.get("reference_date_to"), settings={'DATE_ORDER': 'YMD'})
 
 credentials = Credentials(
     int_account=int_account,
@@ -43,14 +46,14 @@ trading_api.connect()
 # SETUP REQUEST TRANSACTIONS
 today = datetime.date.today()
 from_date = TransactionsHistory.Request.Date(
-    year=2021,
-    month=1,
-    day=1,
+    year=reference_date_from.year,
+    month=reference_date_from.month,
+    day=reference_date_from.day,
 )
 to_date = TransactionsHistory.Request.Date(
-    year=today.year,
-    month=today.month,
-    day=today.day,
+    year=reference_date_to.year,
+    month=reference_date_to.month,
+    day=reference_date_to.day,
 )
 request = TransactionsHistory.Request(
     from_date=from_date,
