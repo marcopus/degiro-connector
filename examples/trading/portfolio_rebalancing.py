@@ -1,13 +1,13 @@
 # IMPORTATIONS
-import sys
+from IPython.display import display
+import dateparser as dp
 import datetime
 import json
 import logging
-import degiro_connector.core.helpers.pb_handler as pb_handler
 import pandas as pd
-import dateparser as dp
+import sys
 
-from IPython.display import display
+import degiro_connector.core.helpers.pb_handler as pb_handler
 from degiro_connector.trading.api import API as TradingAPI
 from degiro_connector.trading.models.trading_pb2 import Credentials, ProductsInfo, TransactionsHistory, Update
 
