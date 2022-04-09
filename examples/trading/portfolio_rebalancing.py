@@ -27,6 +27,7 @@ with open(f"config/{account_name}.json") as config_file:
 int_account = config_dict.get("int_account")
 username = config_dict.get("username")
 password = config_dict.get("password")
+totp_secret_key = config_dict.get("totp_secret_key")
 reference_date_from = dp.parse(config_dict.get("reference_date_from"), settings={'DATE_ORDER': 'YMD'})
 reference_date_to = dp.parse(config_dict.get("reference_date_to"), settings={'DATE_ORDER': 'YMD'})
 
@@ -34,6 +35,7 @@ credentials = Credentials(
     int_account=int_account,
     username=username,
     password=password,
+    totp_secret_key=totp_secret_key
 )
 
 # SETUP TRADING API
